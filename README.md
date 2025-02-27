@@ -25,6 +25,8 @@ NEO4J_USERNAME=<YOUR_NEO4J_USERNAME>
 NEO4J_PASSWORD=<YOUR_NEO4J_PASSWORD>
 
 OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
+GOOGLE_API_KEY=<YOUR_OPENAI_API_KEY>
+GOOGLE_EMBEDDING_MODEL=models/embedding-001
 
 HOSPITALS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/hospitals.csv
 PAYERS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/payers.csv
@@ -38,11 +40,16 @@ CHATBOT_URL=http://host.docker.internal:8000/hospital-rag-agent
 HOSPITAL_AGENT_MODEL=gpt-4o-mini
 HOSPITAL_CYPHER_MODEL=gpt-4o-mini
 HOSPITAL_QA_MODEL=gpt-4o-mini
+
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_API_KEY=<YOUR_OPENAI_API_KEY>
+PROJECT_NAME=neo4j-chatbot
+LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
 ```
 
 The three `NEO4J_` variables are used to connect to your Neo4j AuraDB instance. Follow the directions [here](https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started) to create a free instance.
 
-The chatbot uses OpenAI LLMs, so you'll need to create an [OpenAI API key](https://realpython.com/generate-images-with-dalle-openai-api/#get-your-openai-api-key) and store it as `OPENAI_API_KEY`.
+The chatbot uses OpenAI/Gemini LLMs, so you'll need to create an [OpenAI API key](https://realpython.com/generate-images-with-dalle-openai-api/#get-your-openai-api-key) and store it as `OPENAI_API_KEY`.
 
 To host the API, go to `chatbot_api/src` then run `uvicorn main:app --host 0.0.0.0 --port 8000`
 
