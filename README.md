@@ -1,44 +1,37 @@
 ## 🤖 Langchain hospital chatbot
-
-Core chatbot implementation, which extends a few things from the tutorial https://realpython.com/build-llm-rag-chatbot-with-langchain/#create-a-neo4j-account-and-auradb-instance. This repo will not list every details of the chatbot, so please refer to the tutorial above for further details.
-
-These are the differences between this code and the above tutorial:
-
-- Replacing every OpenAI shenanigans with Google Gemini API and excluding the Docker-related files.
-- Adds a ConversationTokenBufferMemory of 300 tokens for the RAG agent.
-- Adds a system prompt for this chatbot to act like a humorous businessman that can shift the user's topic to hospital's when becoming unrelated.
-- Integrate LangSmith's tracing functionality to help debugging the agents' respponses. Link: https://smith.langchain.com/
-
 The overall workflow is as follows:
 
 <img src='workflow.avif'>
 
 ### 🛠️ How to run
 
+Create a `.env` file in the root directory and add the following environment variables:
+
+```.env
+NEO4J_URI=<YOUR_NEO4J_URI>
+NEO4J_USERNAME=<YOUR_NEO4J_USERNAME>
+NEO4J_PASSWORD=<YOUR_NEO4J_PASSWORD>
+
+OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
+
+HOSPITALS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/hospitals.csv
+PAYERS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/payers.csv
+PHYSICIANS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/physicians.csv
+PATIENTS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/patients.csv
+VISITS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/visits.csv
+REVIEWS_CSV_PATH=https://raw.githubusercontent.com/hfhoffman1144/langchain_neo4j_rag_app/main/data/reviews.csv
+
+CHATBOT_URL=http://host.docker.internal:8000/hospital-rag-agent
+
+HOSPITAL_AGENT_MODEL=gpt-4o-mini
+HOSPITAL_CYPHER_MODEL=gpt-4o-mini
+HOSPITAL_QA_MODEL=gpt-4o-mini
+```
+
+The three `NEO4J_` variables are used to connect to your Neo4j AuraDB instance. Follow the directions [here](https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started) to create a free instance.
+
+The chatbot uses OpenAI LLMs, so you'll need to create an [OpenAI API key](https://realpython.com/generate-images-with-dalle-openai-api/#get-your-openai-api-key) and store it as `OPENAI_API_KEY`.
+
 To host the API, go to `chatbot_api/src` then run `uvicorn main:app --host 0.0.0.0 --port 8000`
 
 To host the Streamlit UI, go to `chatbot_frontend/src` then run `streamlit run main.py`
-
-### ⚠️ Notes
-
-- Since Gemini API is free, we leave the key in the `.env` file there for testing.
-
-- Please create your unit API tests in the `tests` folder.
-
-- Sometimes Neo4j AuroraDB might not respond, because it automatically pauses the instance after not using for a long time. In that case, please create a new instance or simply press Reconnect on the console.
-
-- Asking for the hospital with shortest long time will take quite a long time, so an implementation to handle this case's response latency might be needed.
-
-### 🖼️ Some demo images
-
-Interacting with chatbot:
-
-<img src='example_usage.png'>
-
-Debugging chatbot's responses with LangSmith:
-
-<img src='langsmith_debugging.png'>
-
-Neo4j AuraDB's console:
-
-<img src='neo4j_aura_console.png'>
