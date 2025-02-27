@@ -3,6 +3,15 @@ The overall workflow is as follows:
 
 <img src='workflow.avif'>
 
+## Neo4j Aura DB
+Graph databases, such as Neo4j, are databases designed to represent and process data stored as a graph. Graph data consists of nodes, edges or relationships, and properties. Nodes represent entities, relationships connect entities, and properties provide additional metadata about nodes and relationships.
+
+The relationships in this hospital is as follows:
+
+
+## Demo
+![Demo](./langchain_rag_chatbot_demo.gif)
+
 ### 🛠️ How to run
 
 Create a `.env` file in the root directory and add the following environment variables:
