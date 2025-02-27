@@ -7,6 +7,9 @@ The overall workflow is as follows:
 Graph databases, such as Neo4j, are databases designed to represent and process data stored as a graph. Graph data consists of nodes, edges or relationships, and properties. Nodes represent entities, relationships connect entities, and properties provide additional metadata about nodes and relationships.
 
 The relationships in this hospital is as follows:
+![graph_relationships](https://github.com/user-attachments/assets/5222ffca-65a1-424d-9073-f33146ec921e)
+
+This diagram shows you all of the nodes and relationships in the hospital system data. One useful way to think about this flowchart is to start with the Patient node and follow the relationships. A Patient has a visit at a hospital, and the hospital employs a physician to treat the visit which is covered by an insurance payer.
 
 
 ## Demo
