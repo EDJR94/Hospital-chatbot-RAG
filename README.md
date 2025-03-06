@@ -9,6 +9,10 @@ Graph databases, such as Neo4j, are databases designed to represent and process 
 The relationships in this hospital is as follows:
 ![graph_relationships](https://github.com/user-attachments/assets/5222ffca-65a1-424d-9073-f33146ec921e)
 
+Some examples of Relationships inside AuraDB:
+![image](https://github.com/user-attachments/assets/c03e8b30-5dbe-4e7a-a864-0357992bbab7)
+
+
 This diagram shows you all of the nodes and relationships in the hospital system data. One useful way to think about this flowchart is to start with the Patient node and follow the relationships. A Patient has a visit at a hospital, and the hospital employs a physician to treat the visit which is covered by an insurance payer.
 
 
